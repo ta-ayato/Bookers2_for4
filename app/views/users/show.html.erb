@@ -28,6 +28,21 @@
                             <td>
                                 <%= book.body %>
                             </td>
+                            <td>
+                                <% if  book.favorited_by?(current_user) %>
+                                    <p>
+                                        <%= link_to book_favorite_path(book), method: :delete do %>
+                                            <i class="fa-solid fa-heart", style="color: red"></i><%= book.favorites.count %> likes
+                                        <% end %>
+                                    </p>
+                                <% else %>
+                                    <p>
+                                <%= link_to book_favorite_path(book), method: :post do%>
+                                    <i class="fa-regular fa-heart", style="color: red"></i><%= book.favorites.count %> likes
+                                <% end %>
+                                    </p>
+                                <% end %>
+                            </td>
                         </tr>
                     </tbody>
                 <% end %>
